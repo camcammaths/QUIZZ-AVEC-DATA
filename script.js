@@ -1,47 +1,45 @@
-let questions = [];
-
-fetch('questions.json')
-    .then(response => response.json())  // Charger le JSON
+// Récupérer les données du fichier JSON
+fetch('data.json')
+    .then(response => response.json())
     .then(data => {
-        questions = data;
-        afficherQuestion(0);  // Afficher la première question
+        const questions = data.questions;
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Afficher la question actuelle et les options
+        function showQuestion() {
+            const questionContainer = document.getElementById('quiz');
+            questionContainer.innerHTML = '';
+            const questionData = questions[currentQuestion];
+            const questionText = document.createElement('h2');
+            questionText.innerText = questionData.question;
+            questionContainer.appendChild(questionText);
+
+            questionData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = function () {
+                    if (option === questionData.answer) {
+                        score++;
+                    }
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        showQuestion();
+                    } else {
+                        showResult();
+                    }
+                };
+                questionContainer.appendChild(button);
+            });
+        }
+
+        // Afficher le résultat final
+        function showResult() {
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = `Vous avez obtenu ${score} / ${questions.length}`;
+            document.getElementById('submit-btn').style.display = 'none';
+        }
+
+        showQuestion();
     })
-    .catch(error => console.error("Erreur de chargement du JSON :", error));
-
-let index = 0;
-
-function afficherQuestion(i) {
-    let questionEl = document.getElementById("question");
-    let answersEl = document.getElementById("answers");
-    let nextBtn = document.getElementById("next");
-
-    questionEl.textContent = questions[i].question;
-    answersEl.innerHTML = "";
-
-    questions[i].reponses.forEach((reponse, j) => {
-        let btn = document.createElement("button");
-        btn.textContent = reponse;
-        btn.onclick = () => verifierReponse(j, i);
-        answersEl.appendChild(btn);
-    });
-
-    nextBtn.style.display = "none";
-}
-
-function verifierReponse(j, i) {
-    if (questions[i].correct === j) {
-        alert("Bonne réponse !");
-    } else {
-        alert("Mauvaise réponse !");
-    }
-    document.getElementById("next").style.display = "block";
-}
-
-document.getElementById("next").onclick = function() {
-    index++;
-    if (index < questions.length) {
-        afficherQuestion(index);
-    } else {
-        alert("Quiz terminé !");
-    }
-};
+    .catch(err => console.error('Erreur de chargement du fichier JSON:', err));
