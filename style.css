@@ -1,18 +1,62 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz en ligne</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Quiz</h1>
-    <div id="quiz-container">
-        <p id="question"></p>
-        <div id="answers"></div>
-        <button id="next" style="display:none;">Suivant</button>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur du quiz */
+#quiz-container {
+    background: white;
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Question */
+#question {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Réponses */
+#answers button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#answers button:hover {
+    background-color: #2980b9;
+}
+
+/* Bouton "Suivant" */
+#next {
+    background: #2ecc71;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#next:hover {
+    background: #27ae60;
+}
