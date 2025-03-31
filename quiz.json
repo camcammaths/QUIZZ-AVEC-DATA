@@ -1,0 +1,30 @@
+[
+ {
+   "QUESTION": "Un nombre est divisible par 2 ",
+   "REPONSE": "si son chiffre des unités est pair (0, 2, 4, 6 ou 8)"
+ },
+ {
+   "QUESTION": "Un nombre entier est divisible par 3",
+   "REPONSE": "si la somme de ses chiffres est divisible par 3"
+ },
+ {
+   "QUESTION": "Un nombre entier est divisible par 4",
+   "REPONSE": "si le nombre formé par son chiffre des dizaines et son chiffre des unités est divisible par 4"
+ },
+ {
+   "QUESTION": "Un nombre entier est divisible par 5",
+   "REPONSE": "si son chiffre des unités est 0 ou 5"
+ },
+ {
+   "QUESTION": "Un nombre entier est divisible par 9",
+   "REPONSE": "si la somme de ses chiffres est divisible par 9"
+ },
+ {
+   "QUESTION": "Un nombre entier est divisible par 10",
+   "REPONSE": "si son chiffre des unités est 0"
+ },
+ {
+   "QUESTION": "",
+   "REPONSE": ""
+ }
+]
