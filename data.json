@@ -1,37 +1,24 @@
-[
- {
-   "QUESTION": "12 est divisible par ?",
-   "OPTION 1": 2,
-   "OPTION 2": 5,
-   "OPTOPN 3": 9,
-   "REPONSE": 1
- },
- {
-   "QUESTION": "25 est divisible par ? ",
-   "OPTION 1": 5,
-   "OPTION 2": 10,
-   "OPTOPN 3": 3,
-   "REPONSE": 5
- },
- {
-   "QUESTION": "100 est divisible par ?",
-   "OPTION 1": 9,
-   "OPTION 2": 12,
-   "OPTOPN 3": 10,
-   "REPONSE": 10
- },
- {
-   "QUESTION": "36 est divisible par ?",
-   "OPTION 1": 9,
-   "OPTION 2": 5,
-   "OPTOPN 3": 10,
-   "REPONSE": 9
- },
- {
-   "QUESTION": "1508 est divisible par ?",
-   "OPTION 1": 3,
-   "OPTION 2": 4,
-   "OPTOPN 3": 9,
-   "REPONSE": 4
- }
-]
+{
+  "questions": [
+    {
+      "question": "Quelle est la capitale de la France ?",
+      "answers": [
+        "Paris",
+        "Lyon",
+        "Marseille",
+        "Nice"
+      ],
+      "correctAnswer": "Paris"
+    },
+    {
+      "question": "Quel est le plus grand océan du monde ?",
+      "answers": [
+        "Atlantique",
+        "Indien",
+        "Arctique",
+        "Pacifique"
+      ],
+      "correctAnswer": "Pacifique"
+    }
+  ]
+}
