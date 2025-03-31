@@ -1,61 +1,47 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let index = 0;
-    let score = 0;
-    let questions = [];
+let questions = [];
 
-    const questionText = document.getElementById("question-text");
-    const optionsContainer = document.getElementById("options-container");
-    const nextBtn = document.getElementById("next-btn");
+fetch('questions.json')
+    .then(response => response.json())  // Charger le JSON
+    .then(data => {
+        questions = data;
+        afficherQuestion(0);  // Afficher la première question
+    })
+    .catch(error => console.error("Erreur de chargement du JSON :", error));
 
-    // Charger le fichier JSON
-    fetch("quiz.json")
-        .then(response => response.json())
-        .then(data => {
-            questions = data;
-            afficherQuestion();
-        })
-        .catch(error => console.error("Erreur de chargement du quiz :", error));
+let index = 0;
 
-    function afficherQuestion() {
-        if (index >= questions.length) {
-            questionText.textContent = `🎉 Quiz terminé ! Score : ${score}/${questions.length}`;
-            optionsContainer.innerHTML = "";
-            nextBtn.style.display = "none";
-            return;
-        }
+function afficherQuestion(i) {
+    let questionEl = document.getElementById("question");
+    let answersEl = document.getElementById("answers");
+    let nextBtn = document.getElementById("next");
 
-        let question = questions[index];
-        questionText.textContent = question.question;
-        optionsContainer.innerHTML = "";
+    questionEl.textContent = questions[i].question;
+    answersEl.innerHTML = "";
 
-        question.options.forEach((option, i) => {
-            let btn = document.createElement("button");
-            btn.textContent = option;
-            btn.onclick = () => verifierReponse(i, question.answer, btn);
-            optionsContainer.appendChild(btn);
-        });
-
-        nextBtn.disabled = true;
-    }
-
-    function verifierReponse(selected, correct, btn) {
-        let boutons = optionsContainer.getElementsByTagName("button");
-
-        for (let i = 0; i < boutons.length; i++) {
-            boutons[i].disabled = true;
-            if (i === correct) {
-                boutons[i].style.background = "green";
-            } else {
-                boutons[i].style.background = "red";
-            }
-        }
-
-        if (selected === correct) score++;
-        nextBtn.disabled = false;
-    }
-
-    nextBtn.addEventListener("click", () => {
-        index++;
-        afficherQuestion();
+    questions[i].reponses.forEach((reponse, j) => {
+        let btn = document.createElement("button");
+        btn.textContent = reponse;
+        btn.onclick = () => verifierReponse(j, i);
+        answersEl.appendChild(btn);
     });
-});
+
+    nextBtn.style.display = "none";
+}
+
+function verifierReponse(j, i) {
+    if (questions[i].correct === j) {
+        alert("Bonne réponse !");
+    } else {
+        alert("Mauvaise réponse !");
+    }
+    document.getElementById("next").style.display = "block";
+}
+
+document.getElementById("next").onclick = function() {
+    index++;
+    if (index < questions.length) {
+        afficherQuestion(index);
+    } else {
+        alert("Quiz terminé !");
+    }
+};
